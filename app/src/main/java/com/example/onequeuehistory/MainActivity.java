@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,6 +46,41 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //액션바
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menuMyPage, menu);
+
+        getSupportActionBar().setTitle("IFind");
+
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.action_bar_pen);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        /*
+        int id = item.getItemId();
+        Intent i;
+        if (id == R.id.action_search) {
+            return true;
+        } else if (id == R.id.action_setting) {
+            i=new Intent(getApplicationContext(), SettingMain.class);
+            startActivity(i);
+            return true;
+        }
+        else if (id == R.id.action_camera) {
+            i=new Intent(getApplicationContext(), ComparePictureList.class);
+            startActivity(i);
+            return true;
+        }
+        */
+        return false;
+    }
 
     public void onBackPressed() {
         if (System.currentTimeMillis() > backKeyPressedTime + 2000) {

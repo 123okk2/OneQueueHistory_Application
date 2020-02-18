@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UserFunction.SignIn"></activity>
+        <activity android:name=".MyPageFunction.MyPageActivity"></activity>
+        <activity android:name=".MyPageFunction.OhDobActivity" />
+        <activity android:name=".TestFunction.TestMainActivity" />
+        <activity android:name=".TestFunction.PerTestStudy" />
+        <activity android:name=".TestFunction.SelectTestType" />
+        <activity android:name=".UserFunction.SignIn" />
         <activity android:name=".UserFunction.LogIn" />
         <activity android:name=".MainActivity">
             <intent-filter>

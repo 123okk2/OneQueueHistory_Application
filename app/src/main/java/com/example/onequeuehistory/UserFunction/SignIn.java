@@ -2,6 +2,7 @@ package com.example.onequeuehistory.UserFunction;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,5 +43,19 @@ public class SignIn extends AppCompatActivity {
 
     public void onCancleClicked(View v) {
         finish();
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menuNothing, menu);
+
+        getSupportActionBar().setTitle("IFind");
+
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.action_bar_pen);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+
+        return true;
     }
 }
