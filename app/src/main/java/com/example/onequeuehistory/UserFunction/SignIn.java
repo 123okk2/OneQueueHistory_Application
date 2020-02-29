@@ -49,7 +49,7 @@ public class SignIn extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menuNothing, menu);
 
-        getSupportActionBar().setTitle("IFind");
+        getSupportActionBar().setTitle("한끝한국사");
 
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.action_bar_pen);

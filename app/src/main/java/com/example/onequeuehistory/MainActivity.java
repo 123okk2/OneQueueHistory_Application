@@ -10,10 +10,13 @@ import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.onequeuehistory.MyPageFunction.MyPageActivity;
+import com.example.onequeuehistory.TestFunction.SelectTestType;
 import com.example.onequeuehistory.UserFunction.LogIn;
 
 public class MainActivity extends AppCompatActivity {
@@ -46,6 +49,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void onClickBtn(View v) {
+        Intent i = new Intent(getApplicationContext(), SelectTestType.class);
+        startActivity(i);
+    }
+
     //액션바
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -63,22 +71,17 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        /*
         int id = item.getItemId();
-        Intent i;
-        if (id == R.id.action_search) {
-            return true;
-        } else if (id == R.id.action_setting) {
-            i=new Intent(getApplicationContext(), SettingMain.class);
-            startActivity(i);
+        Intent i = new Intent();
+        if (id == R.id.action_Ohdob) {
+            i=new Intent(getApplicationContext(), OhDobActivity.class);
             return true;
         }
-        else if (id == R.id.action_camera) {
-            i=new Intent(getApplicationContext(), ComparePictureList.class);
-            startActivity(i);
+        else if (id == R.id.action_setting) {
+            i=new Intent(getApplicationContext(), MyPageActivity.class);
             return true;
         }
-        */
+        startActivity(i);
         return false;
     }
 

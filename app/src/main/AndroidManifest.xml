@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MyPageFunction.MyPageActivity"></activity>
-        <activity android:name=".MyPageFunction.OhDobActivity" />
         <activity android:name=".TestFunction.TestMainActivity" />
         <activity android:name=".TestFunction.PerTestStudy" />
         <activity android:name=".TestFunction.SelectTestType" />
