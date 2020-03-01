@@ -4,14 +4,19 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MyPageFunction.MyPageActivity"></activity>
+        <activity android:name=".TestFunction.StudySelectedTest"></activity>
+        <activity android:name=".MyPageFunction.MyWeaknessMain" />
+        <activity android:name=".UserFunction.EditInfo" />
+        <activity android:name=".UserFunction.UnRegister" />
+        <activity android:name=".OhDobfunction.OhDobMain" />
+        <activity android:name=".MyPageFunction.MyPageActivity" />
         <activity android:name=".TestFunction.TestMainActivity" />
-        <activity android:name=".TestFunction.PerTestStudy" />
+        <activity android:name=".TestFunction.SelectTestNum" />
         <activity android:name=".TestFunction.SelectTestType" />
         <activity android:name=".UserFunction.SignIn" />
         <activity android:name=".UserFunction.LogIn" />

@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.onequeuehistory.R;
+import com.example.onequeuehistory.ServerConnectionFunction.ServerConnectionManager;
 
 public class LogIn extends AppCompatActivity {
     //뒤로가기시 종료
@@ -47,17 +48,12 @@ public class LogIn extends AppCompatActivity {
         //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         SharedPreferences pref = getSharedPreferences("loginInfo", MODE_PRIVATE);
-
         idInput = (EditText) findViewById(R.id.idInput);
         pwdInput = (EditText) findViewById(R.id.pwdInput);
         autoLogin = (CheckBox) findViewById(R.id.checkBox);
         loginBtn = (Button) findViewById(R.id.logInBtn);
-
         String id = pref.getString("id", "SYS_NONE");
         String pw = pref.getString("pwd", "");
-
-        System.out.println(id.equals("SYS_NONE"));
-        System.out.println("id:"+idInput.getText());
 
         if(id.equals("SYS_NONE")) {
             idInput.setText("");
@@ -74,27 +70,57 @@ public class LogIn extends AppCompatActivity {
             autoLogin.setChecked(true);
             loginBtn.performClick();
         }
-
     }
 
     public void checkPermiss() {
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.INTERNET)== PackageManager.PERMISSION_DENIED){
-            ActivityCompat.requestPermissions(this,
-                    new String[] { Manifest.permission.INTERNET}, 0);
-        }
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.INTERNET)== PackageManager.PERMISSION_DENIED) ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.INTERNET}, 0);
     }
 
     public void onClickLogin(View v) {
         id = idInput.getText().toString();
         pwd = pwdInput.getText().toString();
-        if(id.equals("")) {
-            Toast.makeText(getApplication(), "아이디를 입력하세요.", Toast.LENGTH_SHORT).show();
-        }
-        else if (pwd.equals("")) {
-            Toast.makeText(getApplication(), "비밀번호를 입력하세요.", Toast.LENGTH_SHORT).show();
-        }
+        System.out.println("입력값" + id + " "  + pwd);
+        if(id.equals("")) Toast.makeText(getApplication(), "아이디를 입력하세요.", Toast.LENGTH_SHORT).show();
+        else if (pwd.equals("")) Toast.makeText(getApplication(), "비밀번호를 입력하세요.", Toast.LENGTH_SHORT).show();
         else {
             //new JSONParse().execute();
+            ServerConnectionManager scm = new ServerConnectionManager();
+            String name = scm.login(id, pwd);
+            System.out.println("받아온거"  + name);
+            if(name.equals("errOccure")) {
+                switch (scm.getErrCode()) {
+                    case 101 :
+                        Toast.makeText(getApplication(), "존재하지 않는 아이디입니다.", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 102 :
+                        Toast.makeText(getApplication(), "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        Toast.makeText(getApplication(), "알 수 없는 오류가 발생했습니다.", Toast.LENGTH_SHORT).show();
+                }
+            }
+            else {
+                if (autoLogin.isChecked()) {
+                    SharedPreferences pref = getSharedPreferences("loginInfo", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("id", id);
+                    editor.putString("pwd", pwd);
+                    editor.commit();
+                } else {
+                    SharedPreferences pref = getSharedPreferences("loginInfo", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("id", "SYS_NONE");
+                    editor.putString("pwd", "");
+                    editor.commit();
+                }
+
+                SharedPreferences pref = getSharedPreferences("userInfo", MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("userID", id);
+                editor.putString("userName", name);
+                editor.commit();
+                finish();
+            }
         }
     }
 
@@ -121,50 +147,13 @@ public class LogIn extends AppCompatActivity {
 
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menuNothing, menu);
-
-        getSupportActionBar().setTitle("한끝한국사");
-
+        getMenuInflater().inflate(R.menu.menu_nothing, menu);
+        getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayUseLogoEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.action_bar_pen);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.menulogo);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         return true;
     }
-
-    /*
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu4, menu);
-
-        getSupportActionBar().setTitle("IFind");
-
-        getSupportActionBar().setDisplayUseLogoEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_icon);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowTitleEnabled(true);
-
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        Intent i;
-        if (id == R.id.action_search) {
-            return true;
-        } else if (id == R.id.action_setting) {
-            i=new Intent(getApplicationContext(), SettingMain.class);
-            startActivity(i);
-            return true;
-        }
-        else if (id == R.id.action_camera) {
-            i=new Intent(getApplicationContext(), ComparePictureList.class);
-            startActivity(i);
-            return true;
-        }
-        return false;
-    }
-    */
 }

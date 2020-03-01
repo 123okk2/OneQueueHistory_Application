@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">OneQueueHistory</string>
+    <string-array name="LAN">
+        <item>"한 문제씩 풀기"</item>
+        <item>"전체 풀기"</item>
+    </string-array>
 </resources>

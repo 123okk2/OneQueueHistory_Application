@@ -1,6 +1,7 @@
 package com.example.onequeuehistory;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -16,8 +17,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.onequeuehistory.MyPageFunction.MyPageActivity;
+import com.example.onequeuehistory.OhDobfunction.OhDobMain;
+import com.example.onequeuehistory.ServerConnectionFunction.ServerConnectionManager;
 import com.example.onequeuehistory.TestFunction.SelectTestType;
 import com.example.onequeuehistory.UserFunction.LogIn;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,21 +38,46 @@ public class MainActivity extends AppCompatActivity {
 
         Intent i = new Intent(getApplicationContext(), LogIn.class);
         startActivity(i);
+    }
 
-        String str = "다음 한국사 시험까지 D-5 남았습니다.";
-        Dday = (TextView)findViewById(R.id.Dday);
-        SpannableStringBuilder ssb = new SpannableStringBuilder(str);
-        if (str.length() == 22) ssb.setSpan(new ForegroundColorSpan(Color.parseColor("#D81B60")), 12, 15, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        else ssb.setSpan(new ForegroundColorSpan(Color.parseColor("#D81B60")), 12, 16, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        Dday.setText(ssb);
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        try {
+            String[] examDates = new ServerConnectionManager().getDate();
+            Date recentExam = new SimpleDateFormat("yyyyMMdd").parse(examDates[0]);
+            long leftDate = (recentExam.getTime() - new Date().getTime()) / (24*60*60*1000);
+            String str = "다음 한국사 시험까지 D-" + leftDate +" 남았습니다.";
+            Dday = (TextView)findViewById(R.id.Dday);
+            SpannableStringBuilder ssb = new SpannableStringBuilder(str);
+            if (str.length() == 22) ssb.setSpan(new ForegroundColorSpan(Color.parseColor("#D81B60")), 12, 15, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            else ssb.setSpan(new ForegroundColorSpan(Color.parseColor("#D81B60")), 12, 16, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            Dday.setText(ssb);
+
+            System.out.println("머징");
+
+            TextView txtView = findViewById(R.id.ExamDates);
+            String dates = "\n";
+            for (String dat:examDates) dates += dat.substring(0,4) + "년 " + dat.substring(4,6) + "월 " + dat.substring(6,8) +"일\n";
+            System.out.println(dates);
+            txtView.setText(dates);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
 
         String startBtnTxt = "문제 풀기\nSTART!";
         startBtn = (Button)findViewById(R.id.startBtn);
         SpannableStringBuilder ssb2 = new SpannableStringBuilder(startBtnTxt);
-        System.out.println(startBtnTxt.length());
-        ssb2.setSpan(new ForegroundColorSpan(Color.parseColor("#D81B60")),8,13, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        startBtn.setText(startBtnTxt);
+        ssb2.setSpan(new ForegroundColorSpan(Color.parseColor("#D81B60")),7,12, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
+        SharedPreferences pref = getSharedPreferences("userInfo", MODE_PRIVATE);
+        String name = pref.getString("userName", "None");
+        if(!name.equals("None")) {
+            TextView txv = findViewById(R.id.textV);
+            txv.setText(name + "님께서 가장 취약하신 파트들이에요.\n남은 기간, 이 부분들을 집중적으로 공부하세요! :)");
+        }
     }
 
     public void onClickBtn(View v) {
@@ -57,12 +88,10 @@ public class MainActivity extends AppCompatActivity {
     //액션바
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menuMyPage, menu);
-
-        getSupportActionBar().setTitle("IFind");
-
+        getMenuInflater().inflate(R.menu.menu_mypage, menu);
+        getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayUseLogoEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.action_bar_pen);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.menulogo);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
@@ -72,16 +101,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        Intent i = new Intent();
         if (id == R.id.action_Ohdob) {
-            i=new Intent(getApplicationContext(), OhDobActivity.class);
+            Intent i=new Intent(getApplicationContext(), OhDobMain.class);
+            startActivity(i);
             return true;
         }
         else if (id == R.id.action_setting) {
-            i=new Intent(getApplicationContext(), MyPageActivity.class);
+            Intent i=new Intent(getApplicationContext(), MyPageActivity.class);
+            startActivity(i);
             return true;
         }
-        startActivity(i);
         return false;
     }
 
