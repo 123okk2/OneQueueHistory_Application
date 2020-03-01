@@ -17,17 +17,16 @@ public class SelectTestType extends AppCompatActivity {
 
     public void onClick(View v) {
         int id = v.getId();
-        Intent i = new Intent();
-
+        Intent i;
         switch(id) {
             case R.id.perTestBtn :
+                i = new Intent(getApplicationContext(), SelectTestNum.class);
+                startActivity(i);
                 break;
             case R.id.randomBtn :
                 break;
             case R.id.LSTMBtn :
                 break;
         }
-
-        startActivity(i);
     }
 }

@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.onequeuehistory.R;
+import com.example.onequeuehistory.ServerConnectionFunction.ServerConnectionManager;
 
 public class SelectTestNum extends AppCompatActivity {
 
@@ -37,14 +38,7 @@ public class SelectTestNum extends AppCompatActivity {
         super.onResume();
 
         //서버에서 시험 수랑 각 시험 점수
-        int[][] tests = new int[40][];
-        int k = 40;
-        for(int i=0;i<40;i++) {
-            tests[i][0] = k--;
-            tests[i][1] = 0;
-        }
-        tests[39][1] = 97;
-        tests[35][1] = 32;
+        int[][] tests = new ServerConnectionManager().getTestList();
 
         testItemAdapter ta = new testItemAdapter();
         gridView.setAdapter(ta);
