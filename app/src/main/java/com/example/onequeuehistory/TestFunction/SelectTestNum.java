@@ -2,6 +2,7 @@ package com.example.onequeuehistory.TestFunction;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +25,7 @@ import com.example.onequeuehistory.ServerConnectionFunction.ServerConnectionMana
 public class SelectTestNum extends AppCompatActivity {
 
     GridView gridView;
+    String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,9 @@ public class SelectTestNum extends AppCompatActivity {
         setContentView(R.layout.activity_per_test_study);
 
         gridView = findViewById(R.id.testGrid);
+
+        SharedPreferences pref = getSharedPreferences("userInfo", MODE_PRIVATE);
+        userID = pref.getString("userID", "None");
     }
 
     @Override
@@ -38,7 +43,7 @@ public class SelectTestNum extends AppCompatActivity {
         super.onResume();
 
         //서버에서 시험 수랑 각 시험 점수
-        int[][] tests = new ServerConnectionManager().getTestList();
+        int[][] tests = new ServerConnectionManager().getTestList(userID);
 
         testItemAdapter ta = new testItemAdapter();
         gridView.setAdapter(ta);
@@ -58,22 +63,29 @@ public class SelectTestNum extends AppCompatActivity {
 
     private Intent i;
     public void onSelectTest(View v) {
-        i = new Intent(getApplicationContext(), StudySelectedTest.class);
+        i = new Intent(getApplicationContext(), StudyTest.class);
         Button selectedTest = findViewById(v.getId());
         int test = Integer.parseInt(selectedTest.getText().toString().substring(0,2));
         i.putExtra("testNumber", test);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("시험 유형을 선택해주세요");
-        builder.setItems(R.array.LAN, new DialogInterface.OnClickListener(){
+        builder.setPositiveButton("전체 풀기", new DialogInterface.OnClickListener(){
             @Override
-            public void onClick(DialogInterface dialog, int pos)
+            public void onClick(DialogInterface dialog, int id)
             {
-                i.putExtra("testType", pos);
+                i.putExtra("testType", 0);
                 startActivity(i);
             }
         });
-
+        builder.setNegativeButton("하나씩 풀기", new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int id)
+            {
+                i.putExtra("testType", 1);
+                startActivity(i);
+            }
+        });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }

@@ -24,8 +24,13 @@ public class SelectTestType extends AppCompatActivity {
                 startActivity(i);
                 break;
             case R.id.randomBtn :
+                i = new Intent(getApplicationContext(), StudyTest.class);
+                i.putExtra("testType", 2);
+                startActivity(i);
                 break;
             case R.id.LSTMBtn :
+                i = new Intent(getApplicationContext(), StudyLSTMTest.class);
+                startActivity(i);
                 break;
         }
     }

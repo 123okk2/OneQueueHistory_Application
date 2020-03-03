@@ -5,18 +5,20 @@ import android.graphics.Bitmap;
 public class question {
     private int testNum; //회차
     private int questionNum; //문제 번호
-    private String qeust; //문제
+    private String quest; //문제
     private int score; //점수
     private Bitmap image; //지문 사진
     private String part1, part2; //문제유형 1,2
     private String answer1, answer2, answer3, answer4, answer5; //지문 1~5
+    private int answer; //정답
     private Bitmap BitmapAnswer1, BitmapAnswer2, BitmapAnswer3, BitmapAnswer4, BitmapAnswer5;
     private Boolean isPic; //문제 유형 (보기가 사진인지 아닌지) 사진 : 1 아님 : 0
+    private String comment;
 
-    public question(int testNum, int questionNum, String qeust, int score, Bitmap image, String part1, String part2, String answer1, String answer2, String answer3, String answer4, String answer5, Boolean isPic) {
+    public question(int testNum, int questionNum, String quest, int score, Bitmap image, String part1, String part2, String answer1, String answer2, String answer3, String answer4, String answer5, int answer, Boolean isPic, String comment) {
         this.testNum = testNum;
         this.questionNum = questionNum;
-        this.qeust = qeust;
+        this.quest = quest;
         this.score = score;
         this.image = image;
         this.part1 = part1;
@@ -26,13 +28,45 @@ public class question {
         this.answer3 = answer3;
         this.answer4 = answer4;
         this.answer5 = answer5;
+        this.answer = answer;
         this.isPic = isPic;
+        this.comment = comment;
     }
 
-    public question(int testNum, int questionNum, String qeust, int score, Bitmap image, String part1, String part2, Bitmap bitmapAnswer1, Bitmap bitmapAnswer2, Bitmap bitmapAnswer3, Bitmap bitmapAnswer4, Bitmap bitmapAnswer5, Boolean isPic) {
+    public String getQuest() {
+        return quest;
+    }
+
+    public void setQuest(String quest) {
+        this.quest = quest;
+    }
+
+    public int getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(int answer) {
+        this.answer = answer;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public question(int testNum) {
+        //끝을 알리기 용.
+        this.testNum = testNum;
+    }
+
+
+    public question(int testNum, int questionNum, String quest, int score, Bitmap image, String part1, String part2, Bitmap bitmapAnswer1, Bitmap bitmapAnswer2, Bitmap bitmapAnswer3, Bitmap bitmapAnswer4, Bitmap bitmapAnswer5, int answer, Boolean isPic, String comment) {
         this.testNum = testNum;
         this.questionNum = questionNum;
-        this.qeust = qeust;
+        this.quest = quest;
         this.score = score;
         this.image = image;
         this.part1 = part1;
@@ -42,7 +76,9 @@ public class question {
         BitmapAnswer3 = bitmapAnswer3;
         BitmapAnswer4 = bitmapAnswer4;
         BitmapAnswer5 = bitmapAnswer5;
+        this.answer = answer;
         this.isPic = isPic;
+        this.comment = comment;
     }
 
     public int getTestNum() {
@@ -61,12 +97,12 @@ public class question {
         this.questionNum = questionNum;
     }
 
-    public String getQeust() {
-        return qeust;
+    public String getquest() {
+        return quest;
     }
 
-    public void setQeust(String qeust) {
-        this.qeust = qeust;
+    public void setquest(String quest) {
+        this.quest = quest;
     }
 
     public int getScore() {
