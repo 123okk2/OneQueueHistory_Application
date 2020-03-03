@@ -97,14 +97,6 @@ public class question {
         this.questionNum = questionNum;
     }
 
-    public String getquest() {
-        return quest;
-    }
-
-    public void setquest(String quest) {
-        this.quest = quest;
-    }
-
     public int getScore() {
         return score;
     }

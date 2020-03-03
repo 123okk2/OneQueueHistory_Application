@@ -6,6 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.onequeuehistory.R;
@@ -34,14 +37,42 @@ public class questionAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.testsheet, parent, false);
         }
 
-
-        Button btn = (Button) convertView.findViewById(R.id.btn);
-        TextView score = (TextView) convertView.findViewById(R.id.scoreText);
-
-        // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득
-        btn.setText(arr.get(position).getTestNum());
-        if(arr.get(position).getScore() == 0) score.setText("미응시");
-        else score.setText(arr.get(position).getScore());
+        TextView testandQuestNum = convertView.findViewById(R.id.textView);
+        testandQuestNum.setText(arr.get(position).getTestNum() + "-" + arr.get(position).getQuestionNum());
+        TextView quest = convertView.findViewById(R.id.textView2);
+        quest.setText(arr.get(position).getQuest());
+        TextView score = convertView.findViewById(R.id.textView3);
+        score.setText(arr.get(position).getScore());
+        ImageView imageView = convertView.findViewById(R.id.imageView);
+        imageView.setImageBitmap(arr.get(position).getImage());
+        ListView answer4Normal = convertView.findViewById(R.id.answer4Normal);
+        Button btn1 = convertView.findViewById(R.id.sel1), btn2 = convertView.findViewById(R.id.sel2),btn3 = convertView.findViewById(R.id.sel3),btn4 = convertView.findViewById(R.id.sel4),btn5 = convertView.findViewById(R.id.sel5);
+        ListView answer4Pic = convertView.findViewById(R.id.answer4Image);
+        ImageButton img1 = convertView.findViewById(R.id.imgsel1), img2 = convertView.findViewById(R.id.imgsel2), img3 = convertView.findViewById(R.id.imgsel3), img4 = convertView.findViewById(R.id.imgsel4), img5 = convertView.findViewById(R.id.imgsel5);
+        if(arr.get(position).getPic()) {
+            answer4Normal.setVisibility(View.GONE);
+            answer4Pic.setVisibility(View.VISIBLE);
+            img1.setImageBitmap(arr.get(position).getBitmapAnswer1());
+            img2.setImageBitmap(arr.get(position).getBitmapAnswer2());
+            img3.setImageBitmap(arr.get(position).getBitmapAnswer3());
+            img4.setImageBitmap(arr.get(position).getBitmapAnswer4());
+            img5.setImageBitmap(arr.get(position).getBitmapAnswer5());
+        }
+        else {
+            answer4Normal.setVisibility(View.VISIBLE);
+            answer4Pic.setVisibility(View.GONE);
+            btn1.setText(arr.get(position).getAnswer1());
+            btn2.setText(arr.get(position).getAnswer2());
+            btn3.setText(arr.get(position).getAnswer3());
+            btn4.setText(arr.get(position).getAnswer4());
+            btn5.setText(arr.get(position).getAnswer5());
+        }
+        TextView answer = convertView.findViewById(R.id.answer);
+        answer.setText(arr.get(position).getAnswer());
+        //테스트 타입 추가하셈
+        TextView testType = convertView.findViewById(R.id.testType);
+        TextView solution = convertView.findViewById(R.id.solution);
+        solution.setText(arr.get(position).getComment());
 
         return convertView;
     }

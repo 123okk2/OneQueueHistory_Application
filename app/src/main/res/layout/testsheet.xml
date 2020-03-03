@@ -49,45 +49,95 @@
             android:layout_height="wrap_content"
             tools:srcCompat="@tools:sample/avatars" />
 
-        <Button
-            android:id="@+id/sel1"
+        <LinearLayout
+            android:id="@+id/answer4Normal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/whitebox"
-            android:gravity="center|left"
-            android:text="Button" />
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/sel2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/whitebox"
-            android:gravity="center|left"
-            android:text="Button" />
+            <Button
+                android:id="@+id/sel2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/whitebox"
+                android:gravity="center|left"
+                android:text="Button" />
 
-        <Button
-            android:id="@+id/sel3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/whitebox"
-            android:gravity="center|left"
-            android:text="Button" />
+            <Button
+                android:id="@+id/sel3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/whitebox"
+                android:gravity="center|left"
+                android:text="Button" />
 
-        <Button
-            android:id="@+id/sel4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/whitebox"
-            android:gravity="center|left"
-            android:text="Button" />
+            <Button
+                android:id="@+id/sel1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/whitebox"
+                android:gravity="center|left"
+                android:text="Button" />
 
-        <Button
-            android:id="@+id/sel5"
+            <Button
+                android:id="@+id/sel4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/whitebox"
+                android:gravity="center|left"
+                android:text="Button" />
+
+            <Button
+                android:id="@+id/sel5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/whitebox"
+                android:gravity="center|left"
+                android:text="Button" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/answer4Image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/whitebox"
-            android:gravity="center|left"
-            android:text="Button" />
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/imgsel1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitStart"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageButton
+                android:id="@+id/imgsel2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitStart"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageButton
+                android:id="@+id/imgsel3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitStart"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageButton
+                android:id="@+id/imgsel4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitStart"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageButton
+                android:id="@+id/imgsel5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitStart"
+                tools:srcCompat="@tools:sample/avatars" />
+        </LinearLayout>
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"

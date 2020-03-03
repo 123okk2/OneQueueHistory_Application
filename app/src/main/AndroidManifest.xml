@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TestFunction.TestResult"></activity>
+        <activity android:name=".MyPageFunction.MyWeaknessTest"></activity>
+        <activity android:name=".TestFunction.TestResult" />
         <activity android:name=".TestFunction.StudyTest" />
         <activity android:name=".TestFunction.StudyLSTMTest" />
         <activity android:name=".MyPageFunction.MyWeaknessMain" />

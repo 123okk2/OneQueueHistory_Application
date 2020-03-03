@@ -18,7 +18,6 @@ public class TestResult extends AppCompatActivity {
 
     private ServerConnectionManager scm = new ServerConnectionManager();
     private String userID;
-    private int testNum, answer;
 
     TextView scoreSection;
     ListView ohdobSection;
