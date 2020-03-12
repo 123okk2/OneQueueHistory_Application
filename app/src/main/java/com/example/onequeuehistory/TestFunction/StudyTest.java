@@ -8,6 +8,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -166,6 +167,7 @@ public class StudyTest extends AppCompatActivity {
             img1.setBackgroundResource(R.drawable.whitebox);
         }
         else if(id == R.id.submitBtn) {
+            boolean chk = false;
             if(answer == 999) {
                 Toast.makeText(getApplicationContext(),"정답을 골라주세요.", Toast.LENGTH_SHORT).show();
                 return;
@@ -180,7 +182,10 @@ public class StudyTest extends AppCompatActivity {
             }
             if(testType == 1 || testType == 2) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                if(answer == quest.getAnswer()) builder.setTitle("정답입니다!").setMessage(quest.getComment());
+                if(answer == quest.getAnswer()) {
+                    builder.setTitle("정답입니다!").setMessage(quest.getComment());
+                    chk = true;
+                }
                 else builder.setTitle("틀렸습니다...").setMessage(quest.getComment());
                 builder.setPositiveButton("확인", new DialogInterface.OnClickListener(){
                     @Override
@@ -212,5 +217,17 @@ public class StudyTest extends AppCompatActivity {
             scm.exitQuestion(userID, quest.getTestNum(), quest.getQuestionNum(), type);
             finish();
         }
+    }
+    //액션바
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_nothing, menu);
+        getSupportActionBar().setTitle("");
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.menulogo);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+
+        return true;
     }
 }

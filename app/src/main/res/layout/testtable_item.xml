@@ -15,12 +15,14 @@
             android:id="@+id/btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/graybox"
             android:gravity="center" />
 
         <TextView
             android:id="@+id/scoreText"
             android:layout_width="match_parent"
             android:layout_height="30dp"
+            android:background="@drawable/whitebox"
             android:gravity="center"
             android:text="TextView"
             android:textColor="@color/colorPrimary" />

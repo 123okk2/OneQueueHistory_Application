@@ -9,16 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MyPageFunction.MyWeaknessTest"></activity>
+        <activity android:name=".OhDobfunction.OhDobTest"></activity>
+        <activity android:name=".MyPageFunction.MyWeaknessTest" />
         <activity android:name=".TestFunction.TestResult" />
-        <activity android:name=".TestFunction.StudyTest" />
+        <activity android:name=".TestFunction.StudyTest" android:noHistory="true" />
         <activity android:name=".TestFunction.StudyLSTMTest" />
         <activity android:name=".MyPageFunction.MyWeaknessMain" />
         <activity android:name=".UserFunction.EditInfo" />
         <activity android:name=".UserFunction.UnRegister" />
         <activity android:name=".OhDobfunction.OhDobMain" />
         <activity android:name=".MyPageFunction.MyPageActivity" />
-        <activity android:name=".TestFunction.TestMainActivity" />
         <activity android:name=".TestFunction.SelectTestNum" />
         <activity android:name=".TestFunction.SelectTestType" />
         <activity android:name=".UserFunction.SignIn" />

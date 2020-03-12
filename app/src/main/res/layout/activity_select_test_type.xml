@@ -22,8 +22,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/redbox"
             android:text="회차별 문제풀기"
-            android:background="#FF0000"
             android:textSize="20sp" />
 
         <Button
@@ -31,8 +31,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/yellowbox"
             android:text="랜덤으로 문제풀기"
-            android:background="#FFEB3B"
             android:textSize="20sp" />
 
         <Button

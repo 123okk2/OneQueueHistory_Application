@@ -3,12 +3,16 @@ package com.example.onequeuehistory.TestFunction;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.onequeuehistory.MyPageFunction.MyPageActivity;
+import com.example.onequeuehistory.OhDobfunction.OhDobMain;
 import com.example.onequeuehistory.R;
 import com.example.onequeuehistory.ServerConnectionFunction.ServerConnectionManager;
 
@@ -36,6 +40,7 @@ public class TestResult extends AppCompatActivity {
         scoreSection.setText(getIntent().getIntExtra("testNum", 0) +"회차 최종 점수 : " + scm.getTotalScore() +"점");
         questionAdapter qa = new questionAdapter();
         ohdobSection.setAdapter(qa);
+        qa.addItem(qsts);
         ohdobSection.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -55,5 +60,33 @@ public class TestResult extends AppCompatActivity {
                 return false;
             }
         });
+    }
+    //액션바
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_mypage, menu);
+        getSupportActionBar().setTitle("");
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.menulogo);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_Ohdob) {
+            Intent i=new Intent(getApplicationContext(), OhDobMain.class);
+            startActivity(i);
+            return true;
+        }
+        else if (id == R.id.action_setting) {
+            Intent i=new Intent(getApplicationContext(), MyPageActivity.class);
+            startActivity(i);
+            return true;
+        }
+        return false;
     }
 }

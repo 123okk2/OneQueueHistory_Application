@@ -8,6 +8,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -19,6 +21,8 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.onequeuehistory.MyPageFunction.MyPageActivity;
+import com.example.onequeuehistory.OhDobfunction.OhDobMain;
 import com.example.onequeuehistory.R;
 import com.example.onequeuehistory.ServerConnectionFunction.ServerConnectionManager;
 
@@ -88,5 +92,34 @@ public class SelectTestNum extends AppCompatActivity {
         });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    //액션바
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_mypage, menu);
+        getSupportActionBar().setTitle("");
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.menulogo);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_Ohdob) {
+            Intent i=new Intent(getApplicationContext(), OhDobMain.class);
+            startActivity(i);
+            return true;
+        }
+        else if (id == R.id.action_setting) {
+            Intent i=new Intent(getApplicationContext(), MyPageActivity.class);
+            startActivity(i);
+            return true;
+        }
+        return false;
     }
 }

@@ -37,13 +37,13 @@ public class questionAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.testsheet, parent, false);
         }
 
-        TextView testandQuestNum = convertView.findViewById(R.id.textView);
+        TextView testandQuestNum = convertView.findViewById(R.id.testNum);
         testandQuestNum.setText(arr.get(position).getTestNum() + "-" + arr.get(position).getQuestionNum());
-        TextView quest = convertView.findViewById(R.id.textView2);
+        TextView quest = convertView.findViewById(R.id.quest);
         quest.setText(arr.get(position).getQuest());
-        TextView score = convertView.findViewById(R.id.textView3);
+        TextView score = convertView.findViewById(R.id.score);
         score.setText(arr.get(position).getScore());
-        ImageView imageView = convertView.findViewById(R.id.imageView);
+        ImageView imageView = convertView.findViewById(R.id.questImg);
         imageView.setImageBitmap(arr.get(position).getImage());
         ListView answer4Normal = convertView.findViewById(R.id.answer4Normal);
         Button btn1 = convertView.findViewById(R.id.sel1), btn2 = convertView.findViewById(R.id.sel2),btn3 = convertView.findViewById(R.id.sel3),btn4 = convertView.findViewById(R.id.sel4),btn5 = convertView.findViewById(R.id.sel5);

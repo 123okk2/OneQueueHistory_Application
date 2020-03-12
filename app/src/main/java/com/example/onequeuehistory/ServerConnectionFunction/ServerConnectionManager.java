@@ -317,6 +317,9 @@ public class ServerConnectionManager {
 
         return newQuest;
     }
+    public Boolean exitSolveSavedQustion(String id, int testNum, int questNum) {
+        return true;
+    }
 
     //4. 취약점
     public MyWeakness[] getWeakness(String id) {
