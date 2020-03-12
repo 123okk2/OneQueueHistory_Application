@@ -242,6 +242,9 @@ public class ServerConnectionManager {
 
         return true;
     }
+    public Boolean saveQuestion(question[] questions) {
+        return true;
+    }
     public question[] getSavedQuestionList(String id, Context context) {
         Bitmap q1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.one);
         Bitmap q = BitmapFactory.decodeResource(context.getResources(), R.drawable.thirtyone);

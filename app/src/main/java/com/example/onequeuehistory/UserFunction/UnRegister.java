@@ -78,7 +78,7 @@ public class UnRegister extends AppCompatActivity {
     //액션바
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_mypage, menu);
+        getMenuInflater().inflate(R.menu.menu_nothing, menu);
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.menulogo);
@@ -86,21 +86,5 @@ public class UnRegister extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_Ohdob) {
-            Intent i=new Intent(getApplicationContext(), OhDobMain.class);
-            startActivity(i);
-            return true;
-        }
-        else if (id == R.id.action_setting) {
-            Intent i=new Intent(getApplicationContext(), MyPageActivity.class);
-            startActivity(i);
-            return true;
-        }
-        return false;
     }
 }

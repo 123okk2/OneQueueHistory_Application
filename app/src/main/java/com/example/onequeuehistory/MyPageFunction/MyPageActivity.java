@@ -56,7 +56,7 @@ public class MyPageActivity extends AppCompatActivity {
     //액션바
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_mypage, menu);
+        getMenuInflater().inflate(R.menu.menu_ohdob, menu);
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.menulogo);
@@ -71,11 +71,6 @@ public class MyPageActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.action_Ohdob) {
             Intent i=new Intent(getApplicationContext(), OhDobMain.class);
-            startActivity(i);
-            return true;
-        }
-        else if (id == R.id.action_setting) {
-            Intent i=new Intent(getApplicationContext(), MyPageActivity.class);
             startActivity(i);
             return true;
         }

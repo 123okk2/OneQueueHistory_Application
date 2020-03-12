@@ -1,6 +1,8 @@
 package com.example.onequeuehistory.TestFunction;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -22,6 +24,7 @@ public class TestResult extends AppCompatActivity {
 
     private ServerConnectionManager scm = new ServerConnectionManager();
     private String userID;
+    private question[] qsts;
 
     TextView scoreSection;
     ListView ohdobSection;
@@ -36,7 +39,7 @@ public class TestResult extends AppCompatActivity {
         ohdobSection = findViewById(R.id.ohdobSection);
         userID = getIntent().getStringExtra("userID");
 
-        question[] qsts = scm.finishQuestion(userID, getIntent().getIntExtra("testNum", 0), 50, getIntent().getIntExtra("answer", 0), getApplicationContext());
+        qsts = scm.finishQuestion(userID, getIntent().getIntExtra("testNum", 0), 50, getIntent().getIntExtra("answer", 0), getApplicationContext());
         scoreSection.setText(getIntent().getIntExtra("testNum", 0) +"회차 최종 점수 : " + scm.getTotalScore() +"점");
         questionAdapter qa = new questionAdapter();
         ohdobSection.setAdapter(qa);
@@ -64,7 +67,7 @@ public class TestResult extends AppCompatActivity {
     //액션바
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_mypage, menu);
+        getMenuInflater().inflate(R.menu.menu_ohdob, menu);
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.menulogo);
@@ -78,13 +81,25 @@ public class TestResult extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_Ohdob) {
-            Intent i=new Intent(getApplicationContext(), OhDobMain.class);
-            startActivity(i);
-            return true;
-        }
-        else if (id == R.id.action_setting) {
-            Intent i=new Intent(getApplicationContext(), MyPageActivity.class);
-            startActivity(i);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("모든 문제를 오답노트에 저장하시겠습니까?");
+            builder.setPositiveButton("예", new DialogInterface.OnClickListener(){
+                @Override
+                public void onClick(DialogInterface dialog, int id)
+                {
+                    Boolean chk = scm.saveQuestion(qsts);
+                    if(chk) Toast.makeText(getApplicationContext(),"모든 문제가 저장되었습니다.", Toast.LENGTH_SHORT).show();
+                    else Toast.makeText(getApplicationContext(),"알 수 없는 오류가 발생했습니다.", Toast.LENGTH_SHORT).show();
+                }
+            });
+            builder.setNegativeButton("아니오", new DialogInterface.OnClickListener(){
+                @Override
+                public void onClick(DialogInterface dialog, int id)
+                {
+                }
+            });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
             return true;
         }
         return false;
