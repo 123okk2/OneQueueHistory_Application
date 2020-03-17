@@ -37,9 +37,10 @@ public class testItemAdapter extends BaseAdapter {
         TextView score = (TextView) convertView.findViewById(R.id.scoreText);
 
         // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득
-        btn.setText(arr.get(position).getTestNum());
-        if(arr.get(position).getScore() == 0) score.setText("미응시");
-        else score.setText(arr.get(position).getScore());
+        btn.setText(Integer.toString(arr.get(position).getTestNum()));
+        if(arr.get(position).getScore() == 0 && arr.get(position).getQuestNum() == 0) score.setText("미응시");
+        else if (arr.get(position).getQuestNum() != 0) score.setText("이어풀기");
+        else score.setText(Integer.toString(arr.get(position).getScore()));
 
         return convertView;
     }
@@ -55,8 +56,8 @@ public class testItemAdapter extends BaseAdapter {
     }
 
     // 아이템 데이터 추가를 위한 함수. 개발자가 원하는대로 작성 가능.
-    public void addItem(int testNum, int score) {
-        testItem item = new testItem(testNum, score);
+    public void addItem(int testNum, int score, int questNum) {
+        testItem item = new testItem(testNum, score, questNum);
         arr.add(item);
     }
 }

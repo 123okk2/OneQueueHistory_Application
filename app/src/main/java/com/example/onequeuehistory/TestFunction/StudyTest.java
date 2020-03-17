@@ -5,7 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AlertDialog;
+import android.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -60,6 +60,18 @@ public class StudyTest extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        btn3.setBackgroundResource(R.drawable.whitebox);
+        btn2.setBackgroundResource(R.drawable.whitebox);
+        btn1.setBackgroundResource(R.drawable.whitebox);
+        btn4.setBackgroundResource(R.drawable.whitebox);
+        btn5.setBackgroundResource(R.drawable.whitebox);
+        img3.setBackgroundResource(R.drawable.whitebox);
+        img2.setBackgroundResource(R.drawable.whitebox);
+        img1.setBackgroundResource(R.drawable.whitebox);
+        img4.setBackgroundResource(R.drawable.whitebox);
+        img5.setBackgroundResource(R.drawable.whitebox);
+
         if(isFirst) {
             if(testType == 0) quest = scm.getQuestion(userID, testNum, getApplicationContext());
             else quest = scm.getRandomQuestion(userID, getApplicationContext());
@@ -73,9 +85,9 @@ public class StudyTest extends AppCompatActivity {
                 quest = scm.getRandomQuestion(userID, quest.getTestNum(), quest.getQuestionNum(), answer, getApplicationContext());
         }
 
-        testNumView.setText(quest.getTestNum() + "-" + quest);
+        testNumView.setText(quest.getTestNum() + "-" + quest.getQuestionNum());
         questView.setText(quest.getQuest());
-        scoreView.setText(quest.getScore());
+        scoreView.setText(Integer.toString(quest.getScore()));
         questImg.setImageBitmap(quest.getImage());
         if(quest.getPic()) {
             answer4Img.setVisibility(View.VISIBLE);
@@ -86,7 +98,7 @@ public class StudyTest extends AppCompatActivity {
             img4.setImageBitmap(quest.getBitmapAnswer4());
             img5.setImageBitmap(quest.getBitmapAnswer5());
         }
-        if(quest.getPic()) {
+        else {
             answer4Img.setVisibility(View.GONE);
             answer4Normal.setVisibility(View.VISIBLE);
             btn1.setText(quest.getAnswer1());

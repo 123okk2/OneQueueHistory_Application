@@ -3,10 +3,12 @@ package com.example.onequeuehistory.TestFunction;
 public class testItem {
     private int testNum;
     private int score;
+    private int questNum;
 
-    testItem(int testNum, int score) {
+    public testItem(int testNum, int score, int questNum) {
         this.testNum = testNum;
         this.score = score;
+        this.questNum = questNum;
     }
 
     public int getTestNum() {
@@ -21,4 +23,6 @@ public class testItem {
     public void setScore(int score) {
         this.score = score;
     }
+    public int getQuestNum() { return questNum; }
+    public void setQuestNum(int questNum) { this.questNum = questNum; }
 }

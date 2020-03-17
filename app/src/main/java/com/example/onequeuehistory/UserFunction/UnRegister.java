@@ -3,7 +3,7 @@ package com.example.onequeuehistory.UserFunction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AlertDialog;
+import android.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -54,8 +54,10 @@ public class UnRegister extends AppCompatActivity {
                 if(chk) {
                     Toast.makeText(getApplication(), "회원탈퇴가 완료되었습니다.", Toast.LENGTH_SHORT).show();
                     SharedPreferences pref2 = getSharedPreferences("loginInfo", MODE_PRIVATE);
-                    pref2.getString("id","SYS_NONE");
-                    pref2.getString("pwd","");
+                    SharedPreferences.Editor editor = pref2.edit();
+                    editor.putString("id", "SYS_NONE");
+                    editor.putString("pwd", "");
+                    editor.commit();
                     Intent i=new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(i);
                 }

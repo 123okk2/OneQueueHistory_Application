@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -42,12 +43,12 @@ public class questionAdapter extends BaseAdapter {
         TextView quest = convertView.findViewById(R.id.quest);
         quest.setText(arr.get(position).getQuest());
         TextView score = convertView.findViewById(R.id.score);
-        score.setText(arr.get(position).getScore());
+        score.setText(Integer.toString(arr.get(position).getScore()));
         ImageView imageView = convertView.findViewById(R.id.questImg);
         imageView.setImageBitmap(arr.get(position).getImage());
-        ListView answer4Normal = convertView.findViewById(R.id.answer4Normal);
+        LinearLayout answer4Normal = convertView.findViewById(R.id.answer4Normal);
         Button btn1 = convertView.findViewById(R.id.sel1), btn2 = convertView.findViewById(R.id.sel2),btn3 = convertView.findViewById(R.id.sel3),btn4 = convertView.findViewById(R.id.sel4),btn5 = convertView.findViewById(R.id.sel5);
-        ListView answer4Pic = convertView.findViewById(R.id.answer4Image);
+        LinearLayout answer4Pic = convertView.findViewById(R.id.answer4Image);
         ImageButton img1 = convertView.findViewById(R.id.imgsel1), img2 = convertView.findViewById(R.id.imgsel2), img3 = convertView.findViewById(R.id.imgsel3), img4 = convertView.findViewById(R.id.imgsel4), img5 = convertView.findViewById(R.id.imgsel5);
         if(arr.get(position).getPic()) {
             answer4Normal.setVisibility(View.GONE);
@@ -57,6 +58,11 @@ public class questionAdapter extends BaseAdapter {
             img3.setImageBitmap(arr.get(position).getBitmapAnswer3());
             img4.setImageBitmap(arr.get(position).getBitmapAnswer4());
             img5.setImageBitmap(arr.get(position).getBitmapAnswer5());
+            if(arr.get(position).getAnswer() == 1) img1.setBackgroundResource(R.drawable.graybox);
+            else if(arr.get(position).getAnswer() == 2) img2.setBackgroundResource(R.drawable.graybox);
+            else if(arr.get(position).getAnswer() == 3) img3.setBackgroundResource(R.drawable.graybox);
+            else if(arr.get(position).getAnswer() == 4) img4.setBackgroundResource(R.drawable.graybox);
+            else if(arr.get(position).getAnswer() == 5) img5.setBackgroundResource(R.drawable.graybox);
         }
         else {
             answer4Normal.setVisibility(View.VISIBLE);
@@ -66,11 +72,18 @@ public class questionAdapter extends BaseAdapter {
             btn3.setText(arr.get(position).getAnswer3());
             btn4.setText(arr.get(position).getAnswer4());
             btn5.setText(arr.get(position).getAnswer5());
+            if(arr.get(position).getAnswer() == 1) btn1.setBackgroundResource(R.drawable.graybox);
+            else if(arr.get(position).getAnswer() == 2) btn2.setBackgroundResource(R.drawable.graybox);
+            else if(arr.get(position).getAnswer() == 3) btn3.setBackgroundResource(R.drawable.graybox);
+            else if(arr.get(position).getAnswer() == 4) btn4.setBackgroundResource(R.drawable.graybox);
+            else if(arr.get(position).getAnswer() == 5) btn5.setBackgroundResource(R.drawable.graybox);
         }
         TextView answer = convertView.findViewById(R.id.answer);
-        answer.setText(arr.get(position).getAnswer());
+        answer.setText(Integer.toString(arr.get(position).getAnswer()));
         //테스트 타입 추가하셈
         TextView testType = convertView.findViewById(R.id.testType);
+        if(arr.get(position).getPart2().equals("")) testType.setText(arr.get(position).getPart1());
+        else testType.setText(arr.get(position).getPart1() + "\n" + arr.get(position).getPart2());
         TextView solution = convertView.findViewById(R.id.solution);
         solution.setText(arr.get(position).getComment());
 

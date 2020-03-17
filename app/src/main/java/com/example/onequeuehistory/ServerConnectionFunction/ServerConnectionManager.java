@@ -47,16 +47,13 @@ public class ServerConnectionManager {
     }
 
     //2. 문제풀이
-    public int[][] getTestList(String id) {
+    public testItem[] getTestList(String id) {
         //회차별 문제풀이 - 개인 점수 및 회차 목록 반환
-        int[][] tests = new int[40][];
+        testItem[] tests = new testItem[40];
         int k = 40;
         for(int i=0;i<40;i++) {
-            tests[i][0] = k--;
-            tests[i][1] = 0;
+            tests[i] = new testItem(k--, 0, 0);
         }
-        tests[39][1] = 97;
-        tests[35][1] = 32;
 
         return tests;
     }
@@ -289,6 +286,9 @@ public class ServerConnectionManager {
 
         return savedAnswers;
     }
+    public Boolean deleteQuestion(String id, int testNum, int questNum) {
+        return true;
+    }
     public question solveSavedQuestion(String id, Context context) {
         Bitmap q = BitmapFactory.decodeResource(context.getResources(), R.drawable.thirtyone);
 
@@ -327,9 +327,9 @@ public class ServerConnectionManager {
     //4. 취약점
     public MyWeakness[] getWeakness(String id) {
         MyWeakness[] weaknesses = {
-                new MyWeakness("조선-사회", 72, 100, "naver.com"),
-                new MyWeakness("일제강점기-단체", 14, 84, "daum.net"),
-                new MyWeakness("귀찮당", 31, 67, "google.com")
+                new MyWeakness("조선-사회", 100, 72, "http://www.naver.com"),
+                new MyWeakness("일제강점기-단체", 84, 14, "http://www.daum.net"),
+                new MyWeakness("귀찮당", 67, 31, "http://www.google.com")
         };
 
         return weaknesses;

@@ -45,5 +45,5 @@ public class MyWeakness {
         this.recommendedVideo = recommendedVideo;
     }
 
-    public double getPercentage() { return corrects/solved; }
+    public double getPercentage() { return ((double) corrects/solved)*100; }
 }

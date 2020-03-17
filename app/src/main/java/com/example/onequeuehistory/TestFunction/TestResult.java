@@ -2,7 +2,7 @@ package com.example.onequeuehistory.TestFunction;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
+import android.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -35,7 +35,7 @@ public class TestResult extends AppCompatActivity {
         setContentView(R.layout.activity_test_result);
         //테스트 페이지 삭제 로직 추가하셈
 
-        scoreSection = findViewById(R.id.scoreText);
+        scoreSection = findViewById(R.id.scoreSection);
         ohdobSection = findViewById(R.id.ohdobSection);
         userID = getIntent().getStringExtra("userID");
 

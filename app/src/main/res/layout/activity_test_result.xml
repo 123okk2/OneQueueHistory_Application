@@ -6,38 +6,45 @@
     android:layout_height="match_parent"
     tools:context=".TestFunction.TestResult">
 
-    <ScrollView
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="75dp"
+        android:background="@drawable/blackbox"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/scoreSection"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/blackbox"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/scoreSection"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="TextView"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
+        <TextView
+            android:id="@+id/alert"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="아래는 해당 회차 오답 목록입니다.\n문제를 길게 누르시면 오답노트 저장이 가능합니다."
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/alert"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="문제를 길게 누르시면 오답노트 저장이 가능합니다."
-                android:textAlignment="center"
-                android:textColor="@color/colorAccent"
-                android:textSize="16sp" />
+    </LinearLayout>
 
-            <ListView
-                android:id="@+id/ohdobSection"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-    </ScrollView>
+    <ListView
+        android:id="@+id/ohdobSection"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/blackbox"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 </android.support.constraint.ConstraintLayout>

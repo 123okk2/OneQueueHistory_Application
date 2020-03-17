@@ -35,7 +35,6 @@ public class OhDobMain extends AppCompatActivity {
         question[] qsts = scm.getSavedQuestionList(userID, getApplicationContext());
         questionAdapter qa = new questionAdapter();
         ohdobSection.setAdapter(qa);
-        qa.addItem(qsts);
         ohdobSection.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -45,7 +44,7 @@ public class OhDobMain extends AppCompatActivity {
         ohdobSection.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                Boolean chk = scm.saveQuestion(userID, ((question) parent.getItemAtPosition(position)).getTestNum(), ((question) parent.getItemAtPosition(position)).getQuestionNum());
+                Boolean chk = scm.deleteQuestion(userID, ((question) parent.getItemAtPosition(position)).getTestNum(), ((question) parent.getItemAtPosition(position)).getQuestionNum());
                 if(chk) {
                     Toast.makeText(getApplicationContext(),"오답노트에서 삭제되었습니다.", Toast.LENGTH_SHORT).show();
                     onResume();
@@ -56,6 +55,7 @@ public class OhDobMain extends AppCompatActivity {
                 return false;
             }
         });
+        qa.addItem(qsts);
 
     }
 

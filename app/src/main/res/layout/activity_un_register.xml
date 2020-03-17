@@ -22,10 +22,9 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:gravity="center"
-            android:text="TextView"
+            android:text="회원탈퇴시 사용자 정보는 삭제됩니다.\n동의하시면 비밀번호를 입력해주세요."
             android:textColor="@color/colorAccent"
-            android:textSize="16sp"
-            tools:text="회원탈퇴시 사용자 정보는 삭제됩니다.\n동의하시면 비밀번호를 입력해주세요." />
+            android:textSize="16sp" />
 
         <LinearLayout
             android:layout_width="match_parent"

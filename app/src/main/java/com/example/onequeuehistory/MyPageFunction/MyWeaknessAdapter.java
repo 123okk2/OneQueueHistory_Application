@@ -45,8 +45,9 @@ public class MyWeaknessAdapter extends BaseAdapter {
         // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득
         chapterName.setText(arr.get(position).getChapter());
         pgbar.setMax(100);
-        pgbar.setProgress((int)arr.get(position).getPercentage());
+        pgbar.setProgress((int)(arr.get(position).getPercentage()));
         counts.setText(arr.get(position).getCorrects() + "/" + arr.get(position).getSolved());
+        System.out.println(arr.get(position).getPercentage());
 
         return convertView;
     }
@@ -65,6 +66,7 @@ public class MyWeaknessAdapter extends BaseAdapter {
     public void addItem(String chapter, int solved, int corrects, String recommendedVideo) {
         arr.add(new MyWeakness(chapter, solved, corrects, recommendedVideo));
     }
+    public void addItem(MyWeakness ar) { arr.add(ar); }
     public void addItem(MyWeakness[] ar) {
         for(int i=0;i<ar.length;i++) arr.add(ar[i]);
     }

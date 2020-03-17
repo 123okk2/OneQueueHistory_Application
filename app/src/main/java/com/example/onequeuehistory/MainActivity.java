@@ -3,6 +3,7 @@ package com.example.onequeuehistory;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,14 +13,20 @@ import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.onequeuehistory.MyPageFunction.MyPageActivity;
+import com.example.onequeuehistory.MyPageFunction.MyWeakness;
+import com.example.onequeuehistory.MyPageFunction.MyWeaknessAdapter;
+import com.example.onequeuehistory.MyPageFunction.MyWeaknessMain;
 import com.example.onequeuehistory.OhDobfunction.OhDobMain;
 import com.example.onequeuehistory.ServerConnectionFunction.ServerConnectionManager;
 import com.example.onequeuehistory.TestFunction.SelectTestType;
+import com.example.onequeuehistory.TestFunction.TestResult;
 import com.example.onequeuehistory.UserFunction.LogIn;
 
 import java.text.SimpleDateFormat;
@@ -30,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView Dday;
     Button startBtn;
     private long backKeyPressedTime = 0;
+    private MyWeakness[] myWeaknessList;
+    private String userID;
+    private ListView listview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent i = new Intent(getApplicationContext(), LogIn.class);
         startActivity(i);
+        listview = findViewById(R.id.myWeaknessList);
     }
 
     @Override
@@ -70,14 +81,29 @@ public class MainActivity extends AppCompatActivity {
         String startBtnTxt = "문제 풀기\nSTART!";
         startBtn = (Button)findViewById(R.id.startBtn);
         SpannableStringBuilder ssb2 = new SpannableStringBuilder(startBtnTxt);
-        ssb2.setSpan(new ForegroundColorSpan(Color.parseColor("#D81B60")),7,12, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ssb2.setSpan(new ForegroundColorSpan(Color.parseColor("#D81B60")),6,11, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        startBtn.setText(ssb2);
 
         SharedPreferences pref = getSharedPreferences("userInfo", MODE_PRIVATE);
         String name = pref.getString("userName", "None");
+        userID = pref.getString("userID", "None");
         if(!name.equals("None")) {
             TextView txv = findViewById(R.id.textV);
             txv.setText(name + "님께서 가장 취약하신 파트들이에요.\n남은 기간, 이 부분들을 집중적으로 공부하세요! :)");
         }
+
+        myWeaknessList = new ServerConnectionManager().getWeakness(userID);
+        //리스트 출력
+        MyWeaknessAdapter ma = new MyWeaknessAdapter();
+        listview.setAdapter(ma);
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(getApplicationContext(), MyWeaknessMain.class);
+                startActivity(i);
+            }
+        });
+        for(int i=0; i<3; i++) ma.addItem(myWeaknessList[i]);
     }
 
     public void onClickBtn(View v) {
@@ -127,5 +153,10 @@ public class MainActivity extends AppCompatActivity {
             System.runFinalizersOnExit(true);
             System.exit(0);
         }
+    }
+
+    public void onClick(View v) {
+        Intent i = new Intent(getApplicationContext(), SelectTestType.class);
+        startActivity(i);
     }
 }

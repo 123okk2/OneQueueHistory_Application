@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/blackbox"
     tools:context=".TestFunction.StudyTest">
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +24,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="@drawable/whitebox"
+                android:background="@drawable/blackbox"
                 android:orientation="horizontal">
 
                 <TextView
@@ -58,7 +59,7 @@
             <ImageView
                 android:id="@+id/questImg"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="200dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <LinearLayout
@@ -68,11 +69,21 @@
                 android:orientation="vertical">
 
                 <Button
+                    android:id="@+id/sel1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/whitebox"
+                    android:gravity="center|left"
+                    android:onClick="onClick"
+                    android:text="Button" />
+
+                <Button
                     android:id="@+id/sel2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/whitebox"
                     android:gravity="center|left"
+                    android:onClick="onClick"
                     android:text="Button" />
 
                 <Button
@@ -81,14 +92,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/whitebox"
                     android:gravity="center|left"
-                    android:text="Button" />
-
-                <Button
-                    android:id="@+id/sel1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/whitebox"
-                    android:gravity="center|left"
+                    android:onClick="onClick"
                     android:text="Button" />
 
                 <Button
@@ -97,6 +101,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/whitebox"
                     android:gravity="center|left"
+                    android:onClick="onClick"
                     android:text="Button" />
 
                 <Button
@@ -105,6 +110,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/whitebox"
                     android:gravity="center|left"
+                    android:onClick="onClick"
                     android:text="Button" />
 
             </LinearLayout>
@@ -118,40 +124,45 @@
                 <ImageButton
                     android:id="@+id/imgsel1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="150dp"
                     android:background="@drawable/whitebox"
+                    android:onClick="onClick"
                     android:scaleType="fitStart"
                     tools:srcCompat="@tools:sample/avatars" />
 
                 <ImageButton
                     android:id="@+id/imgsel2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="150dp"
                     android:background="@drawable/whitebox"
+                    android:onClick="onClick"
                     android:scaleType="fitStart"
                     tools:srcCompat="@tools:sample/avatars" />
 
                 <ImageButton
                     android:id="@+id/imgsel3"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="150dp"
                     android:background="@drawable/whitebox"
+                    android:onClick="onClick"
                     android:scaleType="fitStart"
                     tools:srcCompat="@tools:sample/avatars" />
 
                 <ImageButton
                     android:id="@+id/imgsel4"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="150dp"
                     android:background="@drawable/whitebox"
+                    android:onClick="onClick"
                     android:scaleType="fitStart"
                     tools:srcCompat="@tools:sample/avatars" />
 
                 <ImageButton
                     android:id="@+id/imgsel5"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="150dp"
                     android:background="@drawable/whitebox"
+                    android:onClick="onClick"
                     android:scaleType="fitStart"
                     tools:srcCompat="@tools:sample/avatars" />
             </LinearLayout>
@@ -161,7 +172,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/blackbox"
-                android:text="제출" />
+                android:onClick="onClick"
+                android:text="제출!"
+                android:textColor="@color/colorAccent" />
 
         </LinearLayout>
     </ScrollView>
