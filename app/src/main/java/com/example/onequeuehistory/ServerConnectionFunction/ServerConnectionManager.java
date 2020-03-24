@@ -45,6 +45,9 @@ public class ServerConnectionManager {
         Boolean chk = true;
         return chk;
     }
+    public int getAverageScore(String id) {
+        return 99;
+    }
 
     //2. 문제풀이
     public testItem[] getTestList(String id) {

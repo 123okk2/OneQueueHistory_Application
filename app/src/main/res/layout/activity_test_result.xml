@@ -33,7 +33,7 @@
             android:layout_weight="1"
             android:text="아래는 해당 회차 오답 목록입니다.\n문제를 길게 누르시면 오답노트 저장이 가능합니다."
             android:textAlignment="center"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/yellow"
             android:textSize="16sp" />
 
     </LinearLayout>

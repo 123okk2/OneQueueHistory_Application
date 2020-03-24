@@ -31,6 +31,8 @@ public class SelectTestNum extends AppCompatActivity {
 
     GridView gridView;
     String userID;
+    private TextView scoreTxt;
+    private ServerConnectionManager scm = new ServerConnectionManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,7 @@ public class SelectTestNum extends AppCompatActivity {
         setContentView(R.layout.activity_per_test_study);
 
         gridView = findViewById(R.id.testGrid);
+        scoreTxt = findViewById(R.id.ScoreText);
 
         SharedPreferences pref = getSharedPreferences("userInfo", MODE_PRIVATE);
         userID = pref.getString("userID", "None");
@@ -47,9 +50,10 @@ public class SelectTestNum extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        scoreTxt.setText("평균 점수 : " + scm.getAverageScore(userID));
 
         //서버에서 시험 수랑 각 시험 점수
-        testItem[] tests = new ServerConnectionManager().getTestList(userID);
+        testItem[] tests = scm.getTestList(userID);
 
         testItemAdapter ta = new testItemAdapter();
         gridView.setAdapter(ta);

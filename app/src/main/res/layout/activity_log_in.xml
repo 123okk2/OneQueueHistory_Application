@@ -43,7 +43,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="ID를 입력하세요"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white" />
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
 

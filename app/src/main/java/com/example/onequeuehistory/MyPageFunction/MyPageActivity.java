@@ -7,20 +7,31 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.onequeuehistory.MainActivity;
 import com.example.onequeuehistory.OhDobfunction.OhDobMain;
 import com.example.onequeuehistory.R;
+import com.example.onequeuehistory.ServerConnectionFunction.ServerConnectionManager;
 import com.example.onequeuehistory.UserFunction.EditInfo;
 import com.example.onequeuehistory.UserFunction.UnRegister;
 
 public class MyPageActivity extends AppCompatActivity {
+    private TextView nameBox;
+    private ServerConnectionManager scm = new ServerConnectionManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_page);
+        nameBox = findViewById(R.id.userName);
+        SharedPreferences pref = getSharedPreferences("userInfo", MODE_PRIVATE);
+        String userID = pref.getString("userID", "None");
+        String name = pref.getString("userName", "None");
+        int averageScore = scm.getAverageScore(userID);
+        if(averageScore == 0) nameBox.setText("환영합니다 " + name + "님\n" + "평균점수 : " + averageScore);
+        else nameBox.setText("환영합니다 " + name + "님");
     }
 
     public void onClickBtn(View v) {
