@@ -50,3 +50,7 @@ Application which helps people to study Korean history
 ## References
 * 마르코브 체인은 해당 도서의 코드를 인용하여 작성했다. : https://wikibook.co.kr/python-machine-learning/
 * 본 시스템은 상업적인 목적으로 활용되지 않았으며, 오로지 프로그래밍 연습용으로 활용되었다.
+
+## Others
+* Server : https://github.com/123okk2/OneQueueHistory_Server
+* SentenceMaker : https://github.com/123okk2/OneQueueHistory_SentenceMaker
